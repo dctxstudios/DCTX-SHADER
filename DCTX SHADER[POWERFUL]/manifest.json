@@ -1,0 +1,29 @@
+{
+ "format_version": 1,
+ "header": {
+  "description": "do you know dctx rtx but now we have dctx shader works for mobile and pc",
+  "name": "DCTX SHADER[WARNNING THIS CONTAINS ALOT OF POWER]",
+  "uuid": "7a097f9d-13ef-4def-9ae9-1c3c74aee8f8",
+  "version": [
+   3,
+   0,
+   0
+  ]
+ },
+ "modules": [
+  {
+   "description": "eb8c0eed-d781-4f9c-8ee1-fda177e53493",
+   "type": "resources",
+   "uuid": "632e3e63-e18c-4b01-89b3-9cdfae2072c2",
+   "version": [
+    3,
+    0,
+    0
+   ]
+  }
+ ],
+ "SE_info": {
+  "creator": "unknown",
+  "hash": "null"
+ }
+}

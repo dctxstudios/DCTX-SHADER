@@ -1,0 +1,47 @@
+// __multiversion__
+// This signals the loading code to prepend either #version 100 or #version 300 es as apropriate.
+
+#include "vertexVersionSimple.h"
+
+#include "uniformWorldConstants.h"
+#include "uniformPerFrameConstants.h"
+#include "uniformShaderConstants.h"
+
+attribute mediump vec4 POSITION;
+attribute vec4 COLOR;
+
+out highp vec3 pos;
+out vec4 cloudColor;
+out vec4 cloudColor2;
+
+const float fogNear = 0.3;
+
+void main(){ 
+
+POS4 worldPosed = WORLD * POSITION;
+vec4 p = POSITION;
+
+p.y -=(0.1,0.2,clamp(length(POSITION.xyz),0.0,1.0))*0.3-0.11;
+gl_Position = WORLDVIEWPROJ * p;
+pos = POSITION.xyz;
+
+vec4 fc = FOG_COLOR;
+vec4 cc = CURRENT_COLOR;
+float lp = length(POSITION.xz);
+
+float day_c = pow(max(min(1.0-FOG_COLOR.b * 1.2, 1.0), 0.0), 0.5);
+float night_c = pow(max(min(1.0-FOG_COLOR.r * 1.5, 1.0), 0.0), 1.2);
+float rain_f = (1.0 - pow(FOG_CONTROL.y, 11.0));
+
+vec4 day = vec4(1.6);
+vec4 night = vec4(0.2,0.3,0.45,0.7);
+vec4 night2 = vec4(0.5,1.0,1.5,1.0);
+vec4 dusk = vec4(0.55,.28,.15,1.2);
+vec4 dusk2 = vec4(1.1,1.0,.2,0.99);
+vec4 rain = FOG_COLOR*vec4(3.8);
+
+vec4 ccld1 = mix(mix(mix(day, dusk, day_c), night, night_c),rain, rain_f);
+vec4 ccld2 = mix(mix(mix(day, dusk2, day_c), night2, night_c),rain, rain_f);
+cloudColor = ccld1;
+cloudColor2 = ccld2;
+}
